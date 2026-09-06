@@ -20,7 +20,7 @@ const SITE_DATA = {
     university: "The University of Auckland",
     location: "Auckland, New Zealand",
     // 头像：把你的照片命名为 photo.jpg 放进 assets/img/ 文件夹，然后把下面改成 "assets/img/photo.jpg"
-    photo: "assets/img/photo.svg",
+    photo: "assets/img/photo.jpg",
     // 研究关键词（显示为标签，可随意增删）
     keywords: [
       "Urban Analytics",
@@ -34,9 +34,9 @@ const SITE_DATA = {
       email: "ou.yiwei@auckland.ac.nz",
       linkedin: "https://www.linkedin.com/in/yiwei-ou/",
       github: "https://github.com/YiweiOu",
-      scholar: "",        // Google Scholar 主页链接（建议填入）
-      orcid: "",          // ORCID 链接（建议填入）
-      cv: ""              // CV 文件链接，例如 "assets/cv.pdf"（把 PDF 放进 assets 后填入）
+      scholar: "https://scholar.google.com/citations?user=ug7oKlEAAAAJ&hl=en",        // Google Scholar 主页链接（建议填入）
+      orcid: "https://orcid.org/0000-0002-9687-4612",          // ORCID 链接（建议填入）
+      cv: "assets/CV_Yiwei Ou.pdf"              // CV 文件链接，例如 "assets/cv.pdf"（把 PDF 放进 assets 后填入）
     }
   },
 
