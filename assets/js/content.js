@@ -14,12 +14,12 @@ const SITE_DATA = {
   /* ---------- 个人资料（左侧边栏）---------- */
   profile: {
     name: "Yiwei Ou",
-    nameCN: "欧艺伟",
-    title: "Ph.D. Candidate in Architecture",
+    nameCN: "",
+    title: "Ph.D. in Architecture",
     affiliation: "School of Architecture and Planning",
     university: "The University of Auckland",
     location: "Auckland, New Zealand",
-    // 头像：把你的照片命名为 photo.jpg 放进 assets/img/ 文件夹，然后把下面改成 "assets/img/photo.jpg"
+    // 头像：把你的照片命名为 photo.jpg 放进 assets/img/ 文件夹即可
     photo: "assets/img/photo.jpg",
     // 研究关键词（显示为标签，可随意增删）
     keywords: [
@@ -34,18 +34,25 @@ const SITE_DATA = {
       email: "ou.yiwei@auckland.ac.nz",
       linkedin: "https://www.linkedin.com/in/yiwei-ou/",
       github: "https://github.com/YiweiOu",
-      scholar: "https://scholar.google.com/citations?user=ug7oKlEAAAAJ&hl=en",        // Google Scholar 主页链接（建议填入）
-      orcid: "https://orcid.org/0000-0002-9687-4612",          // ORCID 链接（建议填入）
-      cv: "assets/CV_Yiwei Ou.pdf"              // CV 文件链接，例如 "assets/cv.pdf"（把 PDF 放进 assets 后填入）
+      scholar: "https://scholar.google.com/citations?user=ug7oKlEAAAAJ&hl=en",
+      huggingface: "https://huggingface.co/Yiwei-Ou",
+      orcid: "https://orcid.org/0000-0002-9687-4612",
+      cv: "assets/cv.pdf"      // CV 文件链接（assets/cv.pdf），留空 "" 则隐藏 Download CV 按钮
     }
   },
 
   /* ---------- 个人简介（About）---------- */
   about: [
-    "Greetings! I am Yiwei Ou (欧艺伟), a Ph.D. Candidate in the School of Architecture and Planning at The University of Auckland, fully supported by the University of Auckland Doctoral Scholarship. I also hold an Artificial Intelligence Graduate Certificate from Stanford University.",
+    "Greetings! I am Yiwei Ou, Ph.D. in Architecture from the School of Architecture and Planning at The University of Auckland, where I was fully supported by the University of Auckland Doctoral Scholarship. I also hold an Artificial Intelligence Graduate Certificate from Stanford University.",
     "My research develops computational methods — machine learning, computer vision, and space syntax — to understand how people perceive, use, and are shaped by urban public and commercial spaces. I build large-scale open datasets and benchmarks (e.g., Urban-ImageNet and MMS-VPR) and apply GeoAI to social-media big data to support human-centred smart city planning.",
     "My work has been recognised by the Best PhD Thesis Award on Public Space Research (shortlisted, Top 9) and the Best Master Thesis Award (Honourable Mention) from City Space Architecture. I serve as a reviewer for leading journals including Sustainable Cities and Society and Computers, Environment and Urban Systems, and I am an Early-Career Advisory Board member of City Space Architecture."
   ],
+
+  // 研究概览图（显示在简介下方；留空 "" 则不显示）
+  researchFigure: {
+    src: "assets/img/research-overview.jpg",
+    caption: "An overview of my doctoral research: understanding urban inversion in China's ultra-modern precinct malls with space syntax and machine learning."
+  },
 
   // 简介下方的数字卡片（label 是说明文字，value 是数字）
   stats: [
@@ -79,10 +86,11 @@ const SITE_DATA = {
       authors: "Ou, Y. *, Cheung, C. C., Ang, J. Y., Ren, X., Sun, R., Gao, G., Zhao, K., & Manfredini, M.",
       title: "Urban-ImageNet: A Large-Scale Multi-Modal Dataset and Evaluation Framework for Urban Space Perception",
       venue: "arXiv:2605.09936",
+      image: "assets/img/urban-imagenet.jpg",   // 论文配图（缩略图显示在右侧，可点击放大）；不需要就删掉这一行
       links: [
         { label: "arXiv", url: "https://arxiv.org/abs/2605.09936" },
-        { label: "Dataset", url: "https://arxiv.org/abs/2605.09936" },
-        { label: "Code", url: "https://arxiv.org/abs/2605.09936" }
+        { label: "Dataset", url: "https://huggingface.co/datasets/Yiwei-Ou/Urban-ImageNet" },
+        { label: "Code", url: "https://github.com/yiasun/dataset-2" }
       ]
     },
     {
@@ -102,12 +110,13 @@ const SITE_DATA = {
     {
       year: 2025, type: "Dataset",
       authors: "Ou, Y. *, Ren, X., Sun, R., Gao, G., Jiang, Z., Zhao, K., & Manfredini, M.",
-      title: "MMS-VPR: Multimodal Street-Level Visual Place Recognition Dataset and Benchmark",
+      title: "MMS-VPR: A Fine-Grained Multimodal Street-Level Visual Place Recognition Dataset and Evaluation Benchmark for Dense Pedestrian Environments",
       venue: "arXiv:2505.12254",
+      image: "assets/img/mms-vpr.jpg",
       links: [
         { label: "arXiv", url: "https://arxiv.org/abs/2505.12254" },
-        { label: "Dataset", url: "https://arxiv.org/abs/2505.12254" },
-        { label: "Code", url: "https://arxiv.org/abs/2505.12254" }
+        { label: "Dataset", url: "https://huggingface.co/datasets/Yiwei-Ou/MMS-VPR" },
+        { label: "Code", url: "https://github.com/yiasun/MMS-VPRlib" }
       ]
     },
     {
@@ -269,7 +278,7 @@ const SITE_DATA = {
     { year: "2017", text: "First-class Academic Scholarship, Hunan University" },
     { year: "2016", text: "Excellence Award, 6th National Green Buildings Design Competition, China" },
     { year: "2016", text: "Undergraduate Merit Scholarship, Hunan University" },
-    { year: "2014–16", text: "National Scholarship, China" }
+    { year: "2014–16", text: "National Motivation Scholarship, China" }
   ],
 
   /* ---------- 受邀报告（Invited Talks）：新的放最上面 ---------- */
