@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yiwei Ou — Ph.D. Candidate, The University of Auckland</title>
+  <meta name="description" content="Yiwei Ou is a Ph.D. Candidate at the School of Architecture and Planning, The University of Auckland, working on urban analytics, GeoAI, machine learning, and space syntax for public and commercial spaces.">
+  <meta name="author" content="Yiwei Ou">
+  <!-- Open Graph（社交分享卡片） -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Yiwei Ou — Ph.D. Candidate, The University of Auckland">
+  <meta property="og:description" content="Urban Analytics · GeoAI & Machine Learning · Space Syntax · Public Space · Social Media Big Data">
+  <meta property="og:url" content="https://yiweiou.github.io/">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- 顶部阅读进度条 -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- 顶部导航 -->
+  <header class="topnav" id="topnav">
+    <div class="topnav-inner">
+      <a href="#top" class="brand">Yiwei Ou</a>
+      <nav class="nav-links" id="navLinks" aria-label="Sections">
+        <a href="#about">About</a>
+        <a href="#news">News</a>
+        <a href="#publications">Publications</a>
+        <a href="#research">Research</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#awards">Awards</a>
+        <a href="#education">Education</a>
+        <a href="#service">Service</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout" id="top">
+    <!-- 左侧边栏（个人资料卡） -->
+    <aside class="sidebar" id="sidebar"><!-- JS 渲染 --></aside>
+
+    <!-- 右侧主内容 -->
+    <div class="content">
+
+      <section id="about" class="section">
+        <div class="section-head"><span class="kicker">About</span><h2>Biography</h2></div>
+        <div id="aboutBody" class="about-body"></div>
+        <div id="statsGrid" class="stats-grid"></div>
+      </section>
+
+      <section id="news" class="section">
+        <div class="section-head"><span class="kicker">News</span><h2>Recent Updates</h2></div>
+        <ul id="newsList" class="news-list"></ul>
+      </section>
+
+      <section id="publications" class="section">
+        <div class="section-head"><span class="kicker">Publications</span><h2>Selected Works</h2></div>
+        <div id="pubFilters" class="pub-filters"></div>
+        <ol id="pubList" class="pub-list"></ol>
+        <p class="pub-note" id="pubNote"></p>
+        <details class="manuscripts">
+          <summary>Manuscripts in Preparation <span id="manuCount"></span></summary>
+          <ul id="manuList" class="manu-list"></ul>
+        </details>
+      </section>
+
+      <section id="research" class="section">
+        <div class="section-head"><span class="kicker">Research</span><h2>Research Experience</h2></div>
+        <div id="researchList" class="card-list"></div>
+      </section>
+
+      <section id="teaching" class="section">
+        <div class="section-head"><span class="kicker">Teaching</span><h2>Teaching &amp; Supervising</h2></div>
+        <div id="teachingList" class="card-list"></div>
+      </section>
+
+      <section id="awards" class="section">
+        <div class="section-head"><span class="kicker">Honors</span><h2>Awards &amp; Honors</h2></div>
+        <ul id="awardsList" class="awards-list"></ul>
+      </section>
+
+      <section id="talks" class="section">
+        <div class="section-head"><span class="kicker">Talks</span><h2>Invited Talks</h2></div>
+        <ul id="talksList" class="talks-list"></ul>
+      </section>
+
+      <section id="education" class="section">
+        <div class="section-head"><span class="kicker">Education</span><h2>Education</h2></div>
+        <div id="eduList" class="edu-list"></div>
+      </section>
+
+      <section id="service" class="section">
+        <div class="section-head"><span class="kicker">Service</span><h2>Service to Profession</h2></div>
+        <div id="serviceList" class="service-grid"></div>
+        <div class="certs">
+          <h3>Certifications &amp; Workshops</h3>
+          <ul id="certList" class="cert-list"></ul>
+        </div>
+      </section>
+
+      <footer class="footer" id="footer"><!-- JS 渲染 --></footer>
+    </div>
+  </main>
+
+  <!-- 返回顶部按钮 -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <script src="assets/js/content.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

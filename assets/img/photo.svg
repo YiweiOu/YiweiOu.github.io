@@ -1,0 +1,13 @@
+<!-- 占位头像：把你的照片命名为 photo.jpg 放入本文件夹，并在 content.js 中把 profile.photo 改为 "assets/img/photo.jpg" -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2a3140"/>
+      <stop offset="1" stop-color="#8c1d2f"/>
+    </linearGradient>
+  </defs>
+  <rect width="480" height="480" fill="url(#bg)"/>
+  <circle cx="240" cy="185" r="72" fill="#f7f6f3" opacity="0.18"/>
+  <path d="M240 270c-82 0-140 52-148 118 52 26 105 32 148 32s96-6 148-32c-8-66-66-118-148-118z" fill="#f7f6f3" opacity="0.18"/>
+  <text x="240" y="212" font-family="Georgia, serif" font-size="76" font-weight="bold" fill="#f7f6f3" text-anchor="middle">YO</text>
+</svg>
