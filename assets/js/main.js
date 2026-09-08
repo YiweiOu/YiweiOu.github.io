@@ -40,8 +40,6 @@
     if (L.huggingface) linksHtml += '<a href="' + esc(L.huggingface) + '" target="_blank" rel="noopener" title="Hugging Face" aria-label="Hugging Face">' + ICONS.huggingface + "</a>";
     if (L.orcid) linksHtml += '<a href="' + esc(L.orcid) + '" target="_blank" rel="noopener" title="ORCID" aria-label="ORCID">' + ICONS.orcid + "</a>";
 
-    var cvHtml = L.cv ? '<a class="cv-button" href="' + esc(L.cv) + '" target="_blank" rel="noopener">' + ICONS.download + "Download CV</a>" : "";
-
     el("sidebar").innerHTML =
       '<div class="profile-card">' +
         '<img class="profile-photo" src="' + esc(p.photo) + '" alt="Portrait of ' + esc(p.name) + '">' +
@@ -51,7 +49,6 @@
         '<div class="profile-loc">' + ICONS.pin + esc(p.location) + "</div>" +
         '<div class="keyword-chips">' + p.keywords.map(function (k) { return "<span>" + esc(k) + "</span>"; }).join("") + "</div>" +
         '<div class="profile-links">' + linksHtml + "</div>" +
-        cvHtml +
         '<div class="visitor-map" hidden>' +
           '<canvas class="visitor-map-canvas" role="img" aria-label="Map of visitor locations"></canvas>' +
           '<p class="visitor-map-caption"></p>' +

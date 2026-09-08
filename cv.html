@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — Yiwei Ou, Ph.D.</title>
+  <meta name="description" content="Curriculum Vitae of Yiwei Ou, Ph.D. in Architecture, The University of Auckland.">
+  <meta name="author" content="Yiwei Ou">
+  <link rel="icon" type="image/jpeg" href="assets/img/photo.jpg">
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="cv-page">
+  <header class="topnav scrolled" id="topnav">
+    <div class="topnav-inner">
+      <a href="/" class="brand">Yiwei Ou, Ph.D.</a>
+      <nav class="nav-links" id="navLinks" aria-label="Sections">
+        <a href="/#about">About</a>
+        <a href="/#news">News</a>
+        <a href="/#publications">Publications</a>
+        <a href="/#education">Education</a>
+        <a href="/#research">Research</a>
+        <a href="/#teaching">Teaching</a>
+        <a href="/#awards">Awards</a>
+        <a href="/#service">Service</a>
+        <a href="cv.html" class="nav-cv active">CV</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="cv-main">
+    <div class="cv-toolbar">
+      <h1 class="cv-title">Curriculum Vitae</h1>
+      <a class="cv-download" id="cvDownload" href="assets/cv.pdf" download>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 19.5h16"/></svg>
+        Download CV (PDF)
+      </a>
+    </div>
+    <!-- 浏览器原生 PDF 阅读器（支持翻页/缩放/打印）；不支持时显示下载提示 -->
+    <div class="cv-viewer">
+      <embed id="cvEmbed" src="assets/cv.pdf" type="application/pdf">
+      <div class="cv-fallback">
+        <p>Your browser cannot display the PDF inline.</p>
+        <a href="assets/cv.pdf" download>Download the CV (PDF) instead</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // 主题逻辑与首页保持一致（记住访客选择）
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem("theme"); } catch (e) {}
+      if (saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+      document.getElementById("themeToggle").addEventListener("click", function () {
+        var dark = document.documentElement.getAttribute("data-theme") === "dark";
+        if (dark) { document.documentElement.removeAttribute("data-theme"); }
+        else { document.documentElement.setAttribute("data-theme", "dark"); }
+        try { localStorage.setItem("theme", dark ? "light" : "dark"); } catch (e) {}
+      });
+      document.getElementById("menuToggle").addEventListener("click", function () {
+        var open = document.getElementById("navLinks").classList.toggle("open");
+        this.classList.toggle("open", open);
+        this.setAttribute("aria-expanded", open);
+      });
+      // CV 路径统一从 content.js 读取（换 PDF 只需改 content.js 一处）
+      var s = document.createElement("script");
+      s.src = "assets/js/content.js";
+      s.onload = function () {
+        if (window.SITE_DATA && SITE_DATA.profile.links.cv) {
+          document.getElementById("cvEmbed").src = SITE_DATA.profile.links.cv;
+          document.getElementById("cvDownload").href = SITE_DATA.profile.links.cv;
+        }
+      };
+      document.head.appendChild(s);
+    })();
+  </script>
+  <!-- GoatCounter 访客统计（与首页一致） -->
+  <script data-goatcounter="https://yiweiou.goatcounter.com/count" async src="assets/js/count.js"></script>
+</body>
+</html>

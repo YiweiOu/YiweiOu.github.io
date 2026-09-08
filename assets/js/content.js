@@ -38,7 +38,7 @@ const SITE_DATA = {
       researchgate: "https://www.researchgate.net/profile/Yiwei-Ou",
       huggingface: "https://huggingface.co/Yiwei-Ou",
       orcid: "https://orcid.org/0000-0002-9687-4612",
-      cv: "assets/cv.pdf"      // CV 文件链接（assets/cv.pdf），留空 "" 则隐藏 Download CV 按钮
+      cv: "assets/cv.pdf"      // CV 的 PDF 文件（cv.html 页面的在线预览和下载按钮都读这里）
     }
   },
 
