@@ -274,8 +274,9 @@ html[data-theme="dark"] .pub-link:hover { color: #10141a; }
   box-shadow: var(--shadow-sm); transition: transform 0.25s, box-shadow 0.25s;
   background: var(--surface);
 }
-/* 缩略图限高：超长的图（如长条海报图）只显示顶部区域，点击仍打开完整原图 */
-.pub-thumb img { display: block; width: 100%; max-height: 170px; object-fit: cover; object-position: top center; }
+/* 缩略图限高：超长的图（如长条海报图）只显示顶部区域，点击仍打开完整原图
+   想调整缩略图显示高度，只改下面 max-height 的数值即可（单位 px，越小越扁） */
+.pub-thumb img { display: block; width: 100%; max-height: 200px; object-fit: cover; object-position: top center; }
 .pub-thumb:hover { transform: translateY(-2px) scale(1.02); box-shadow: var(--shadow-md); }
 @media (max-width: 720px) {
   .pub-item.with-image { flex-direction: column-reverse; }

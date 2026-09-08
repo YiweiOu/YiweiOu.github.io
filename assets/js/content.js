@@ -380,12 +380,6 @@ const SITE_DATA = {
       ]
     },
     {
-      group: "Expert Research Evaluation",
-      items: [
-        "Invited Expert Contributor for Research Novelty Evaluation, UK Metascience Unit & University of Sussex, 2026"
-      ]
-    },
-    {
       group: "Committee & Membership",
       items: [
         "Early-Career Advisory Board, City Space Architecture, 2022 – Present",
@@ -403,6 +397,12 @@ const SITE_DATA = {
         "National Nominated Delegate, 17th NZ Annual Aspiring Leaders' Forum (ALF), Wellington, 2023",
         "Academic Event Organizer, New Zealand Chinese Postgraduate Society, 2023 – 2024",
         "Vice President, Graduate Students Council, School of Architecture and Planning, Hunan University, 2018 – 2019"
+      ]
+    },
+    {
+      group: "Expert Research Evaluation",
+      items: [
+        "Invited Expert Contributor for Research Novelty Evaluation, UK Metascience Unit & University of Sussex, 2026"
       ]
     }
   ],
