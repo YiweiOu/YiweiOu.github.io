@@ -35,6 +35,7 @@ const SITE_DATA = {
       linkedin: "https://www.linkedin.com/in/yiwei-ou/",
       github: "https://github.com/YiweiOu",
       scholar: "https://scholar.google.com/citations?user=ug7oKlEAAAAJ&hl=en",
+      researchgate: "https://www.researchgate.net/profile/Yiwei-Ou",
       huggingface: "https://huggingface.co/Yiwei-Ou",
       orcid: "https://orcid.org/0000-0002-9687-4612",
       cv: "assets/cv.pdf"      // CV 文件链接（assets/cv.pdf），留空 "" 则隐藏 Download CV 按钮
@@ -50,8 +51,8 @@ const SITE_DATA = {
 
   // 研究概览图（显示在简介下方；留空 "" 则不显示）
   researchFigure: {
-    src: "assets/img/research-overview.jpg",
-    caption: "An overview of my doctoral research: understanding urban inversion in China's ultra-modern precinct malls with space syntax and machine learning."
+    src: "assets/img/research-interests.svg",
+    caption: "My research interests at a glance: bridging urban space, artificial intelligence, and human experience — from multimodal digital evidence (social media, street-level imagery) to AI and spatial methods, centred on computational urbanism."
   },
 
   // 简介下方的数字卡片（label 是说明文字，value 是数字）
@@ -64,6 +65,7 @@ const SITE_DATA = {
 
   /* ---------- 新闻动态（News）：新的放最上面 ---------- */
   news: [
+    { date: "09/2026", text: "Our paper \"People, Place, and Protest: Re-examining the Complexities within the 2022 Parliament Grounds Covid-19-Related Protests in Aotearoa New Zealand\" was accepted for publication." },
     { date: "07/2026", text: "My PhD thesis was shortlisted (Top 9) for the Best PhD Thesis Award on Public Space Research by City Space Architecture." },
     { date: "06/2026", text: "Our paper \"Rationalise, Distract, and Detour\" was presented at the 15th International Space Syntax Symposium in Johor Bahru, Malaysia." },
     { date: "06/2026", text: "Served as Senior Group Facilitator at the 20th New Zealand Annual Aspiring Leaders' Forum on Faith and Values, Wellington." },
@@ -86,11 +88,13 @@ const SITE_DATA = {
       authors: "Ou, Y. *, Cheung, C. C., Ang, J. Y., Ren, X., Sun, R., Gao, G., Zhao, K., & Manfredini, M.",
       title: "Urban-ImageNet: A Large-Scale Multi-Modal Dataset and Evaluation Framework for Urban Space Perception",
       venue: "arXiv:2605.09936",
-      image: "assets/img/urban-imagenet.jpg",   // 论文配图（缩略图显示在右侧，可点击放大）；不需要就删掉这一行
+      image: "assets/img/thumb/urban-imagenet.jpg",       // 列表缩略图（小图，加载快）
+      imageFull: "assets/img/full/urban-imagenet.png",    // 点击后打开的高清原图
       links: [
         { label: "arXiv", url: "https://arxiv.org/abs/2605.09936" },
         { label: "Dataset", url: "https://huggingface.co/datasets/Yiwei-Ou/Urban-ImageNet" },
-        { label: "Code", url: "https://github.com/yiasun/dataset-2" }
+        { label: "Code", url: "https://github.com/yiasun/dataset-2" },
+        { label: "ResearchGate", url: "https://www.researchgate.net/publication/404754187_Urban-ImageNet_A_Large-Scale_Multi-Modal_Dataset_and_Evaluation_Framework_for_Urban_Space_Perception" }
       ]
     },
     {
@@ -98,13 +102,20 @@ const SITE_DATA = {
       authors: "Ou, Y. *, & Manfredini, M.",
       title: "Futurible Heterotopias of Phygital Spectacle: Understanding How Digital Technologies Intensify Spatial Segregation in Quasi-Public Commercial Centres",
       venue: "The Journal of Public Space, 10(2), 47–76",
-      links: [ { label: "DOI", url: "https://doi.org/10.32891/jps.v10i2.1882" } ]
+      image: "assets/img/thumb/futurible-heterotopias.jpg",
+      imageFull: "assets/img/full/futurible-heterotopias.png",
+      links: [
+        { label: "DOI", url: "https://doi.org/10.32891/jps.v10i2.1882" },
+        { label: "ResearchGate", url: "https://www.researchgate.net/publication/408177426_Futurible_Heterotopias_of_Phygital_Spectacle_Understanding_How_Digital_Technologies_Intensify_Spatial_Segregation_in_Quasi-Public_Commercial_Centres" }
+      ]
     },
     {
       year: 2026, type: "Conference",
       authors: "Guo, Z., Manfredini, M., Ou, Y., & Jiang, J.",
       title: "Rationalise, Distract, and Detour: Decoding the Spatial Logic of the Hetero-inverted Consumption Space in Urban China",
       venue: "15th International Space Syntax Symposium, Johor Bahru, Malaysia",
+      image: "assets/img/thumb/sss15.jpg",
+      imageFull: "assets/img/full/sss15.png",
       links: []
     },
     {
@@ -112,11 +123,13 @@ const SITE_DATA = {
       authors: "Ou, Y. *, Ren, X., Sun, R., Gao, G., Jiang, Z., Zhao, K., & Manfredini, M.",
       title: "MMS-VPR: A Fine-Grained Multimodal Street-Level Visual Place Recognition Dataset and Evaluation Benchmark for Dense Pedestrian Environments",
       venue: "arXiv:2505.12254",
-      image: "assets/img/mms-vpr.jpg",
+      image: "assets/img/thumb/mms-vpr.jpg",
+      imageFull: "assets/img/full/mms-vpr.png",
       links: [
         { label: "arXiv", url: "https://arxiv.org/abs/2505.12254" },
         { label: "Dataset", url: "https://huggingface.co/datasets/Yiwei-Ou/MMS-VPR" },
-        { label: "Code", url: "https://github.com/yiasun/MMS-VPRlib" }
+        { label: "Code", url: "https://github.com/yiasun/MMS-VPRlib" },
+        { label: "ResearchGate", url: "https://www.researchgate.net/publication/391878697_MMS-VPR_Multimodal_Street-Level_Visual_Place_Recognition_Dataset_and_Benchmark" }
       ]
     },
     {
@@ -124,13 +137,19 @@ const SITE_DATA = {
       authors: "Ou, Y. *, & Manfredini, M.",
       title: "Discipline and 'Consume!': Spatial Configuration Ringiness in Open-Plan Commercial Centres in China",
       venue: "14th International Space Syntax Symposium, Nicosia, Cyprus",
-      links: []
+      image: "assets/img/thumb/sss14.jpg",
+      imageFull: "assets/img/full/sss14.png",
+      links: [
+        { label: "ResearchGate", url: "https://www.researchgate.net/publication/387751547_Discipline_and_Consume_Spatial_Configuration_Ringiness_in_Open-Plan_Commercial_Centres_in_China" }
+      ]
     },
     {
       year: 2024, type: "Conference",
       authors: "Ou, Y. *, & Manfredini, M.",
       title: "New Digital Technologies in Quasi-Public Commercial Centres: Extended Hyper-Reality, Illusion and Augmented Social Interactions",
       venue: "International Conference on Past Present and Future of Public Space (PPFPS), Bologna, Italy",
+      image: "assets/img/thumb/hyper-reality.jpg",
+      imageFull: "assets/img/full/hyper-reality.png",
       links: []
     },
     {
@@ -138,20 +157,30 @@ const SITE_DATA = {
       authors: "Ou, Y. *, Zhou, X., Tu, H., Chen, Y., & Jia, X.",
       title: "Evaluating Spatial Justice through the Analysis of the Relationship between House Prices and the Accessibility to Urban Infrastructures with a Big Data Approach",
       venue: "11th International Conference of the Arab Society for Computation in Architecture, Art and Design (ASCAAD), Amman, Jordan",
-      links: []
+      image: "assets/img/thumb/spatial-justice.jpg",
+      imageFull: "assets/img/full/spatial-justice.jpg",
+      links: [
+        { label: "ResearchGate", url: "https://www.researchgate.net/publication/379376491_Evaluating_spatial_justice_through_the_analysis_of_the_relationship_between_house_prices_and_the_accessibility_to_urban_infrastructures_with_a_big_data_approach" }
+      ]
     },
     {
       year: 2023, type: "Conference",
       authors: "Chen, Y., Jia, X., Tu, H., Ou, Y., & Zhou, X.",
       title: "City Diversity: How Do Architectural Uses, Ages, and Styles Affect the Public? — A Case Study in Manhattan through Social Media Data",
       venue: "11th International Conference of the Arab Society for Computation in Architecture, Art and Design (ASCAAD), Amman, Jordan",
-      links: []
+      image: "assets/img/thumb/city-diversity.jpg",
+      imageFull: "assets/img/full/city-diversity.png",
+      links: [
+        { label: "ResearchGate", url: "https://www.researchgate.net/publication/379381438_City_diversity_how_do_architectural_uses_ages_and_styles_affect_the_public" }
+      ]
     },
     {
       year: 2023, type: "Conference",
       authors: "Ou, Y. *",
       title: "A Comparative Study on the Spatial Configurations and Urban Connectivity of the Paradigms of Enclosed and Precinct Malls: The Cases of Changsha IFS and Chengdu Taikoo Li in China",
       venue: "2nd International Space Syntax PhD Conference (SS2PhD)",
+      image: "assets/img/thumb/comparative.jpg",
+      imageFull: "assets/img/full/comparative.png",
       links: []
     },
     {
@@ -159,27 +188,43 @@ const SITE_DATA = {
       authors: "Ou, Y. *, Manfredini, M., Gao, G., Sun, R., & Su, Q.",
       title: "Sociospatial Wellbeing in Urban Commercial Centres: An Analysis of Abstraction and Relationality of Novel Mall Spatialities in the Mobile Internet Era",
       venue: "6th International Conference on Indonesian Architecture and Planning (ICIAP), Lecture Notes in Civil Engineering, vol. 334, pp. 557–578, Springer",
-      links: [ { label: "DOI", url: "https://doi.org/10.1007/978-981-99-1403-6_37" } ]
+      image: "assets/img/thumb/sociospatial-wellbeing.jpg",
+      imageFull: "assets/img/full/sociospatial-wellbeing.png",
+      links: [
+        { label: "DOI", url: "https://doi.org/10.1007/978-981-99-1403-6_37" },
+        { label: "ResearchGate", url: "https://www.researchgate.net/publication/371883619_Sociospatial_Wellbeing_in_Urban_Commercial_Centres_An_Analysis_of_Abstraction_and_Relationality_of_Novel_Mall_Spatialities_in_the_Mobile_Internet_Era" }
+      ]
     },
     {
       year: 2023, type: "Conference",
       authors: "Su, Q., Manfredini, M., Sun, R., & Ou, Y.",
       title: "Opportunities and Challenges for Rural Migrant Workers in Villages in the City: A Perspective of Translocal Reproduction of Labour and Re-Commoning",
       venue: "6th International Conference on Indonesian Architecture and Planning (ICIAP), Lecture Notes in Civil Engineering, vol. 334, pp. 151–162, Springer",
-      links: [ { label: "DOI", url: "https://doi.org/10.1007/978-981-99-1403-6_12" } ]
+      image: "assets/img/thumb/villages-in-the-city.jpg",
+      imageFull: "assets/img/full/villages-in-the-city.png",
+      links: [
+        { label: "DOI", url: "https://doi.org/10.1007/978-981-99-1403-6_12" },
+        { label: "ResearchGate", url: "https://www.researchgate.net/publication/371893800_Opportunities_and_Challenges_for_Rural_Migrant_Workers_in_Villages_in_the_City_A_Perspective_of_Translocal_Reproduction_of_Labour_and_Re-commoning" }
+      ]
     },
     {
       year: 2022, type: "Conference",
       authors: "Ou, Y. *, & Manfredini, M.",
       title: "The Configurational Analysis of the Ultra-Modern Shopping Centre in the Urban Restructuring of the Mediatized Era: A Study of Ultra-Modern Centre Based on the Method of Space Syntax",
       venue: "13th International Space Syntax Symposium (SSS13), Bergen, Norway",
-      links: []
+      image: "assets/img/thumb/sss13.jpg",
+      imageFull: "assets/img/full/sss13.jpg",
+      links: [
+        { label: "ResearchGate", url: "https://www.researchgate.net/publication/379381058_The_Configurational_Analysis_of_the_Ultra-Modern_Shopping_Centre_in_the_Urban_Restructuring_of_the_Mediatized_Era_A_Study_of_Ultra-Modern_Centre_Based_on_the_Method_of_Space_Syntax" }
+      ]
     },
     {
       year: 2022, type: "Journal",
       authors: "Gao, G., Chen, F., & Ou, Y.",
       title: "Study on the Spatial Design of Large Independent Bookstores: Taking Changsha Meixi Master as an Example",
       venue: "China Science Paper Online, 202203-248",
+      image: "assets/img/thumb/bookstore-study.jpg",
+      imageFull: "assets/img/full/bookstore-study.png",
       links: []
     },
     {
@@ -187,7 +232,11 @@ const SITE_DATA = {
       authors: "Ou, Y. *, & Manfredini, M.",
       title: "Public Space and Consumption in the Mobile Internet Era — A Study on the Heterotopic Inversion of Ultra-Modern Shopping Malls",
       venue: "13th International Forum on Urbanism (IFoU), pp. 390–409",
-      links: []
+      image: "assets/img/thumb/ifou.jpg",
+      imageFull: "assets/img/full/ifou.png",
+      links: [
+        { label: "ResearchGate", url: "https://www.researchgate.net/publication/379381039_Public_space_and_consumption_in_the_mobile_internet_era_A_study_on_the_heterotopic_inversion_of_ultra-modern_shopping_malls" }
+      ]
     }
   ],
 
@@ -202,28 +251,50 @@ const SITE_DATA = {
     "Ou, Y., & Wu, J. A Big Data Tool to Evaluate the Urban Spatial Justice of the Accessibility to Shopping Facilities: Evidence from National-wide Neighborhoods in the Netherlands."
   ],
 
-  /* ---------- 研究经历（Research Experience）---------- */
+  /* ---------- 研究经历（Research Experience）----------
+     image/imageFull 为配图（缩略图/高清原图）；links 为相关链接按钮；note 为成果说明（可选） */
   research: [
     {
       role: "Research Assistant",
       org: "The University of Auckland, New Zealand",
       period: "02/2024 – 09/2026",
-      project: "Mapping New Geographies: Investigating the 2022 Parliament Grounds Protests in Wellington, NZ (PIs: Farzaneh Haghighi, Manfredini Manfredini)",
-      description: "Applied computer vision and machine learning methods to large-scale social media datasets, including training models to detect and classify urban landmarks, mapping the geospatial distribution of urban facilities, and conducting spatial-temporal analysis of digitally mediated urban activity."
+      project: "Mapping New Geographies: Investigating the 2022 Parliament Grounds Protests in Wellington, NZ",
+      description: "Applied computer vision and machine learning methods to large-scale social media datasets, including training models to detect and classify urban landmarks, mapping the geospatial distribution of urban facilities, and conducting spatial-temporal analysis of digitally mediated urban activity.",
+      image: "assets/img/thumb/wlg-3d-map.jpg",
+      imageFull: "assets/img/full/wlg-3d-map.png",
+      links: [
+        { label: "PI: Farzaneh Haghighi", url: "https://profiles.auckland.ac.nz/f-haghighi" },
+        { label: "PI: Manfredo Manfredini", url: "https://profiles.auckland.ac.nz/m-manfredini" },
+        { label: "Journal", url: "https://www.euppublishing.com/journal/legal" }
+      ],
+      note: "Related publication (accepted): People, Place, and Protest — Re-examining the Complexities within the 2022 Parliament Grounds Covid-19-Related Protests in Aotearoa New Zealand."
     },
     {
       role: "Research Assistant",
       org: "The University of Auckland, New Zealand",
       period: "10/2023 – 06/2024",
-      project: "Cities and Digital Platforms (PI: Elham Bahmanteymouri)",
-      description: "Conducted literature review and data collection examining the impacts of short-term-rental digital platforms on land use, urban economics, and urban development patterns across different geographic contexts."
+      project: "Cities and Digital Platforms",
+      description: "Conducted literature review and data collection examining the impacts of short-term-rental digital platforms on land use, urban economics, and urban development patterns across different geographic contexts.",
+      image: "assets/img/thumb/cities-digital-platforms.jpg",
+      imageFull: "assets/img/full/cities-digital-platforms.png",
+      links: [
+        { label: "PI: Elham Bahmanteymouri", url: "https://profiles.auckland.ac.nz/e-bahmanteymouri" },
+        { label: "Book (Routledge, 2025)", url: "https://www.routledge.com/Cities-and-Digital-Platforms/Bahmanteymouri/p/book/9781032402765" }
+      ],
+      note: "Outcomes: this project was published as the book Cities and Digital Platforms (1st Edition, Routledge, April 2025, ISBN 9781032402765)."
     },
     {
       role: "Research Assistant",
       org: "The University of Auckland, New Zealand",
       period: "11/2023 – 05/2024",
-      project: "Future Cities Research Centre (PI: Paola Boarin)",
-      description: "Maintained and updated the Future Cities Research Hub website, supporting the dissemination and communication of research activities and outputs."
+      project: "Future Cities Research Centre",
+      description: "Maintained and updated the Future Cities Research Hub website, supporting the dissemination and communication of research activities and outputs.",
+      image: "assets/img/thumb/fcrc.jpg",
+      imageFull: "assets/img/full/fcrc.jpg",
+      links: [
+        { label: "PI: Paola Boarin", url: "https://profiles.auckland.ac.nz/p-boarin" },
+        { label: "Research Centre Website", url: "https://www.futurecities.ac.nz/" }
+      ]
     }
   ],
 
@@ -232,7 +303,7 @@ const SITE_DATA = {
     {
       role: "Co-supervisor, MSc Thesis in Computer Science",
       org: "The University of Auckland (with Dr. Xiaobin Ren, Prof. Kaiqi Zhao)",
-      period: "06/2024 – Present",
+      period: "06/2024 – 09/2026",
       description: "Co-supervising a master's thesis on a multimodal street-level visual place recognition (VPR) dataset and benchmark for urban environments in Chinese commercial districts, contributing to data collection protocols, research design, and thesis guidance."
     },
     {
@@ -295,8 +366,8 @@ const SITE_DATA = {
     {
       group: "Journal Article Reviewer",
       items: [
-        "Sustainable Cities and Society (IF = 13.3), 2024 – Present",
-        "Computers, Environment and Urban Systems (IF = 8.9), 2024 – Present"
+        "Sustainable Cities and Society (IF = 13.3) — 30+ manuscripts reviewed, 2024 – Present",
+        "Computers, Environment and Urban Systems (IF = 8.9) — 10+ manuscripts reviewed, 2024 – Present"
       ]
     },
     {

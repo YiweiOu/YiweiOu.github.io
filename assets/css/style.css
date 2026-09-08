@@ -309,6 +309,17 @@ html[data-theme="dark"] .pub-link:hover { color: #10141a; }
 .exp-org { font-size: 13.4px; color: var(--muted); margin-top: 3px; }
 .exp-project { font-size: 13.8px; font-weight: 600; color: var(--ink-soft); margin-top: 8px; }
 .exp-desc { font-size: 14px; color: var(--muted); margin-top: 6px; line-height: 1.68; }
+.exp-note {
+  font-size: 13px; color: var(--ink-soft); margin-top: 9px; line-height: 1.6;
+  padding: 8px 12px; border-radius: 8px; background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+}
+/* 带配图的研究卡片 */
+.exp-card.with-image { display: flex; gap: 22px; align-items: flex-start; }
+.exp-card.with-image .exp-body { flex: 1; min-width: 0; }
+@media (max-width: 720px) {
+  .exp-card.with-image { flex-direction: column-reverse; }
+}
 
 /* Awards */
 .awards-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 26px; }
