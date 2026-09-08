@@ -52,7 +52,156 @@
         '<div class="keyword-chips">' + p.keywords.map(function (k) { return "<span>" + esc(k) + "</span>"; }).join("") + "</div>" +
         '<div class="profile-links">' + linksHtml + "</div>" +
         cvHtml +
+        '<div class="visitor-map" hidden>' +
+          '<canvas class="visitor-map-canvas" role="img" aria-label="Map of visitor locations"></canvas>' +
+          '<p class="visitor-map-caption"></p>' +
+        "</div>" +
       "</div>";
+  }
+
+  /* ---------- 访客地图（canvas 世界地图 + 访问统计）----------
+     思路与数据管线参考 github.com/SonghuaHu-UMD/songhuahu-umd.github.io：
+     GoatCounter 计数 → build-visitor-map.js 定期生成 visitor_map.json → 本函数渲染。
+     数据为空时组件保持隐藏。 */
+  function initVisitorMap() {
+    var holder = document.querySelector(".visitor-map");
+    if (!holder || !window.fetch) return;
+
+    /* 等宽圆柱投影，裁掉无人居住的纬度（南极洲）， sidebar 不浪费高度 */
+    var LAT_MAX = 84, LAT_MIN = -60;
+    var ASPECT = 360 / (LAT_MAX - LAT_MIN);
+
+    Promise.all([
+      fetch("assets/world_land.json").then(function (r) { return r.json(); }),
+      fetch("assets/visitor_map.json").then(function (r) { return r.json(); })
+    ]).then(render).catch(function () { /* 保持隐藏 */ });
+
+    function themeColor(name, fallback) {
+      var v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      return v || fallback;
+    }
+    function withAlpha(hex, alpha) {
+      var m = hex.replace("#", "");
+      if (m.length === 3) m = m.replace(/./g, "$&$&");
+      var n = parseInt(m, 16);
+      return "rgba(" + ((n >> 16) & 255) + "," + ((n >> 8) & 255) + "," + (n & 255) + "," + alpha + ")";
+    }
+
+    function render(res) {
+      var land = res[0].land, data = res[1];
+      var points = (data && data.points) || [];
+      if (!points.length) return;   // 暂无访问数据：不显示
+
+      /* 有省级数据的拆成省/州点；无法定位的访问量留在国家点上，总数不重复计算 */
+      var dots = [];
+      for (var i = 0; i < points.length; i++) {
+        var p = points[i], regions = p.regions || [], rest = p.count;
+        for (var j = 0; j < regions.length; j++) {
+          var r = regions[j];
+          if (r.lon == null) continue;
+          dots.push({ lon: r.lon, lat: r.lat, count: r.count, head: r.name + " · " + r.count, sub: p.label });
+          rest -= r.count;
+        }
+        if (rest <= 0) continue;
+        var dot = { lon: p.lon, lat: p.lat, count: rest, head: p.label + " · " + p.count };
+        if (rest < p.count) dot.sub = rest + " elsewhere in the country";
+        else if (regions.length) dot.sub = regions.slice(0, 4).map(function (x) { return x.name + " " + x.count; }).join(" · ");
+        dots.push(dot);
+      }
+      if (!dots.length) return;
+      dots.sort(function (a, b) { return b.count - a.count; });
+
+      var canvas = holder.querySelector(".visitor-map-canvas");
+      var ctx = canvas.getContext("2d");
+      var tip = null;
+      var maxCount = dots[0].count;
+      var w = 0, h = 0;
+
+      function project(lon, lat) {
+        return [(lon + 180) / 360 * w, (LAT_MAX - lat) / (LAT_MAX - LAT_MIN) * h];
+      }
+      /* 面积（而非半径）与访问数成正比；共用透明度使重叠点读作密度 */
+      function radius(count) { return 1.6 + Math.sqrt(count / maxCount) * 3.6; }
+
+      function draw() {
+        w = holder.clientWidth;
+        if (!w) return;
+        h = Math.round(w / ASPECT);
+        var dpr = window.devicePixelRatio || 1;
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        canvas.style.width = w + "px";
+        canvas.style.height = h + "px";
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+
+        ctx.beginPath();
+        for (var r = 0; r < land.length; r++) {
+          var ring = land[r];
+          for (var p = 0; p < ring.length; p++) {
+            var xy = project(ring[p][0], ring[p][1]);
+            if (p === 0) ctx.moveTo(xy[0], xy[1]); else ctx.lineTo(xy[0], xy[1]);
+          }
+          ctx.closePath();
+        }
+        ctx.fillStyle = themeColor("--map-land", "#e4e9ed");
+        ctx.fill();
+
+        ctx.fillStyle = withAlpha(themeColor("--accent", "#8c1d2f"), 0.72);
+        for (var i = 0; i < dots.length; i++) {
+          var c = project(dots[i].lon, dots[i].lat);
+          ctx.beginPath();
+          ctx.arc(c[0], c[1], radius(dots[i].count), 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      /* 先显示再取宽度（隐藏元素 clientWidth 为 0） */
+      holder.hidden = false;
+      draw();
+
+      var caption = holder.querySelector(".visitor-map-caption");
+      caption.textContent = (data.total || 0).toLocaleString() + " visits · " + points.length +
+        (points.length === 1 ? " location" : " locations");
+      if (data.generated) caption.title = "Updated " + data.generated;
+
+      /* 最近点悬停提示（textContent 写入，不解析 HTML） */
+      canvas.addEventListener("mousemove", function (e) {
+        var box = canvas.getBoundingClientRect();
+        var mx = e.clientX - box.left, my = e.clientY - box.top;
+        var hit = null, best = Infinity;
+        for (var i = 0; i < dots.length; i++) {
+          var c = project(dots[i].lon, dots[i].lat);
+          var d = Math.hypot(c[0] - mx, c[1] - my);
+          if (d < Math.max(radius(dots[i].count), 5) && d < best) { best = d; hit = dots[i]; }
+        }
+        if (!hit) { if (tip) tip.style.opacity = 0; canvas.style.cursor = ""; return; }
+        if (!tip) {
+          tip = document.createElement("div");
+          tip.className = "visitor-map-tip";
+          document.body.appendChild(tip);
+        }
+        canvas.style.cursor = "pointer";
+        tip.textContent = "";
+        var head = document.createElement("div");
+        head.textContent = hit.head;
+        tip.appendChild(head);
+        if (hit.sub) {
+          var sub = document.createElement("div");
+          sub.className = "visitor-map-tip-sub";
+          sub.textContent = hit.sub;
+          tip.appendChild(sub);
+        }
+        tip.style.opacity = 1;
+        tip.style.left = (e.pageX + 12) + "px";
+        tip.style.top = (e.pageY + 12) + "px";
+      });
+      canvas.addEventListener("mouseleave", function () { if (tip) tip.style.opacity = 0; });
+      window.addEventListener("resize", draw);
+      /* 深色模式切换时按新配色重绘 */
+      var themeBtn = document.getElementById("themeToggle");
+      if (themeBtn) themeBtn.addEventListener("click", function () { setTimeout(draw, 50); });
+    }
   }
 
   /* ---------- 渲染：About + 统计 ---------- */
@@ -141,7 +290,7 @@
     }).join("");
   }
 
-  /* 研究经历卡片：支持配图（缩略图+高清原图）、链接按钮、成果说明 */
+  /* 研究经历卡片：支持配图（可多张，缩略图+高清原图）、链接按钮、成果说明 */
   function renderResearch() {
     el("researchList").innerHTML = D.research.map(function (e) {
       var links = (e.links || []).map(function (l) {
@@ -154,14 +303,19 @@
         '<div class="exp-desc">' + esc(e.description) + "</div>" +
         (e.note ? '<div class="exp-note">' + esc(e.note) + "</div>" : "") +
         (links ? '<div class="pub-meta">' + links + "</div>" : "");
-      if (e.image || e.imageFull) {
-        var thumbSrc = e.image || e.imageFull;
-        var fullSrc = e.imageFull || e.image;
+      /* 多张图（images 数组）或单张图（image/imageFull） */
+      var imgs = e.images || ((e.image || e.imageFull) ? [{ image: e.image, imageFull: e.imageFull }] : []);
+      if (imgs.length) {
+        var thumbs = imgs.map(function (im) {
+          var thumbSrc = im.image || im.imageFull;
+          var fullSrc = im.imageFull || im.image;
+          return '<a class="pub-thumb" href="' + esc(fullSrc) + '" target="_blank" rel="noopener" title="Click to view full-resolution image">' +
+            '<img src="' + esc(thumbSrc) + '" alt="Figure: ' + esc(e.project) + '" loading="lazy">' +
+          "</a>";
+        }).join("");
         return '<div class="exp-card with-image">' +
           '<div class="exp-body">' + body + "</div>" +
-          '<a class="pub-thumb" href="' + esc(fullSrc) + '" target="_blank" rel="noopener" title="Click to view full-resolution image">' +
-            '<img src="' + esc(thumbSrc) + '" alt="Figure: ' + esc(e.project) + '" loading="lazy">' +
-          "</a>" +
+          '<div class="exp-thumbs">' + thumbs + "</div>" +
         "</div>";
       }
       return '<div class="exp-card">' + body + "</div>";
@@ -275,6 +429,7 @@
 
   /* ---------- 启动 ---------- */
   renderSidebar();
+  initVisitorMap();
   renderAbout();
   renderNews();
   renderPublications();

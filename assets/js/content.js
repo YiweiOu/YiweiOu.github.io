@@ -31,7 +31,7 @@ const SITE_DATA = {
     ],
     // 联系方式与学术链接：url 留空 "" 就会自动隐藏，填入链接即显示
     links: {
-      email: "ou.yiwei@auckland.ac.nz",
+      email: "you661@aucklanduni.ac.nz",
       linkedin: "https://www.linkedin.com/in/yiwei-ou/",
       github: "https://github.com/YiweiOu",
       scholar: "https://scholar.google.com/citations?user=ug7oKlEAAAAJ&hl=en",
@@ -65,7 +65,6 @@ const SITE_DATA = {
 
   /* ---------- 新闻动态（News）：新的放最上面 ---------- */
   news: [
-    { date: "09/2026", text: "Our paper \"People, Place, and Protest: Re-examining the Complexities within the 2022 Parliament Grounds Covid-19-Related Protests in Aotearoa New Zealand\" was accepted for publication." },
     { date: "07/2026", text: "My PhD thesis was shortlisted (Top 9) for the Best PhD Thesis Award on Public Space Research by City Space Architecture." },
     { date: "06/2026", text: "Our paper \"Rationalise, Distract, and Detour\" was presented at the 15th International Space Syntax Symposium in Johor Bahru, Malaysia." },
     { date: "06/2026", text: "Served as Senior Group Facilitator at the 20th New Zealand Annual Aspiring Leaders' Forum on Faith and Values, Wellington." },
@@ -260,8 +259,10 @@ const SITE_DATA = {
       period: "02/2024 – 09/2026",
       project: "Mapping New Geographies: Investigating the 2022 Parliament Grounds Protests in Wellington, NZ",
       description: "Applied computer vision and machine learning methods to large-scale social media datasets, including training models to detect and classify urban landmarks, mapping the geospatial distribution of urban facilities, and conducting spatial-temporal analysis of digitally mediated urban activity.",
-      image: "assets/img/thumb/wlg-3d-map.jpg",
-      imageFull: "assets/img/full/wlg-3d-map.png",
+      images: [
+        { image: "assets/img/thumb/wlg-3d-map.jpg", imageFull: "assets/img/full/wlg-3d-map.png" },
+        { image: "assets/img/thumb/wlg-top10-posts.jpg", imageFull: "assets/img/full/wlg-top10-posts.png" }
+      ],
       links: [
         { label: "PI: Farzaneh Haghighi", url: "https://profiles.auckland.ac.nz/f-haghighi" },
         { label: "PI: Manfredo Manfredini", url: "https://profiles.auckland.ac.nz/m-manfredini" },
@@ -313,10 +314,10 @@ const SITE_DATA = {
       description: "Invited to serve as a course facilitator for Stanford's professional-level computer vision course, supporting course delivery, student engagement, and learning facilitation."
     },
     {
-      role: "Teacher / Co-instructor, Academic Career Advancement Programme (ACAP) 2024",
+      role: "Teacher, Academic Career Advancement Programme (ACAP)",
       org: "The University of Auckland, New Zealand",
       period: "02/2024 – 10/2024",
-      description: "Delivered lectures and facilitated seminars addressing key aspects of academic life and fostering interdisciplinary connections among academics across the University."
+      description: "Delivered lectures and facilitated seminars addressing key aspects of academic life and fostering interdisciplinary connections among academics across the University of Auckland."
     },
     {
       role: "Co-supervisor, Master of Architecture (Professional) Thesis",
@@ -471,7 +472,7 @@ const SITE_DATA = {
   /* ---------- 页脚 ---------- */
   footer: {
     line1: "School of Architecture and Planning, The University of Auckland",
-    line2: "ou.yiwei@auckland.ac.nz",
+    line2: "you661@aucklanduni.ac.nz",
     copyright: "© 2026 Yiwei Ou. All rights reserved."
   }
 };
